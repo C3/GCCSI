@@ -1,0 +1,106 @@
+﻿@model GCCSI_CO2RE.Models.PolicyListData
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>PolicyListData</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Country.CountryName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Country.CountryName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Year.YearName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Year.YearName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PolicyListOptionID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PolicyListOptionID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PolicyName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PolicyName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PolicyDescription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PolicyDescription)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PolicyURL)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PolicyURL)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PolicyListStatusID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PolicyListStatusID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Summary)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Summary)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdateDateTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UpdateDateTime)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.PolicyListDataID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

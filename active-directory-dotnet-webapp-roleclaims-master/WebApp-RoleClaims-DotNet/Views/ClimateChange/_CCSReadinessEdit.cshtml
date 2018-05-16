@@ -1,0 +1,161 @@
+﻿@using GCCSI_CO2RE.Models
+@model GCCSI_CO2RE.Models.CCSReadinessIndexData
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div>
+        <fieldset>
+            @if (ViewBag.IsUpdate == true)
+
+            {
+                @Html.HiddenFor(model => model.ReadinessIndexDataID)
+            }
+            
+
+            <table id="editableGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0" style="table-layout:fixed; font-size:12px; margin-top:1.5rem">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Region.RegionName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Country.CountryName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PolicyScore)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StorageScore)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LegalRegulatoryScore)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CCSReadinessIndexScore)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Year.YearName)
+                        </th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                       @Html.DropDownList("RegionID", null, htmlAttributes: new { @id= "regionDropDown", @class = "form-control" })
+                       @Html.ValidationMessageFor(model => model.RegionID, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.DropDownList("CountryID", null, htmlAttributes: new { @id= "countryDropDown", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.PolicyScore, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PolicyScore, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.StorageScore, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.StorageScore, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.LegalRegulatoryScore, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LegalRegulatoryScore, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CCSReadinessIndexScore, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CCSReadinessIndexScore, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.DropDownList("YearID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.YearID, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+
+
+            <div>
+                <div class="editor-label">
+
+                    @Html.LabelFor(model => model.Note)
+
+                </div>
+
+                <div class="editor-field" style="font-size:12px">
+
+                    @Html.TextAreaFor(model => model.Note, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.Note)
+
+                </div>
+
+                <div class="editor-label">
+
+                    @Html.LabelFor(model => model.Summary)
+
+                </div>
+
+                <div class="editor-field" style="font-size:12px">
+
+                    @Html.TextAreaFor(model => model.Summary, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.Summary)
+
+                </div>
+
+            </div>
+            <p style="margin-top:1.5rem">
+
+                @if (ViewBag.IsUpdate == true)
+
+                {
+
+                    <input type="submit" value="Update" id="btnUpdate" name="cmd" class="btn btn-secondary pi-draggable" />
+                    <input type="button" value="Cancel" id="btncancelEdit" class="btn btn-danger pi-draggable" />
+                }
+
+                else
+
+                {
+
+                    <input type="submit" value="Save" id="btnSave" name="cmd" class="btn btn-secondary pi-draggable" />
+                            <input type="button" value="Cancel" id="btncancelCreate" class="btn btn-danger pi-draggable" />
+                }
+
+            </p>
+
+
+
+        </fieldset>
+    </div>
+    <script>
+        $(document).ready(function () {
+
+            $('#regionDropDown').change(function () {
+                var regionChosen = $(this).val();
+                var countryChosen = $("#countryDropDown").val();
+                $.ajax({
+                    url: '@Url.Action("GetSelectCountriesList")',
+                    type: 'GET',
+                    data: {
+                        regionID: regionChosen,
+                        countryID: countryChosen
+                    },
+                    cache: false,
+                    success: function (result) {
+                        //We will add the options here now.
+                        var countryDropDown = $("#countryDropDown");
+                        countryDropDown.empty();
+                        countryDropDown.append(result);
+                    }
+                });
+            });
+
+            $('#regionDropDown').trigger('change');
+
+        });
+    </script>
+
+}
+
+

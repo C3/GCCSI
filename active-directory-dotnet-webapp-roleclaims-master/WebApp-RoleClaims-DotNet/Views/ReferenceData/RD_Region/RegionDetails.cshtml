@@ -1,0 +1,42 @@
+﻿@model GCCSI_CO2RE.Models.RD_Region
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>RD_Region</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RegionName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RegionName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdateDateTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UpdateDateTime)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.RegionID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

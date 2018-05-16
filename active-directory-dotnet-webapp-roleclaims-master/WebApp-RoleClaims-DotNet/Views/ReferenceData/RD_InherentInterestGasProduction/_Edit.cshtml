@@ -1,0 +1,80 @@
+﻿@model GCCSI_CO2RE.Models.RD_InherentInterestGasProduction
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <div>
+        <fieldset>
+            @if (ViewBag.IsUpdate == true)
+
+            {
+
+                @Html.HiddenFor(model => model.InherentInterestGasProductionID)
+
+            }
+
+            <table id="editableGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0" style="table-layout:fixed; font-size:12px; margin-top:1.5rem">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GasProductionPercentageShare)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GasProductionScore)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GasProductionBand)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GasProductionTier)
+                        </th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        @Html.EditorFor(model => model.GasProductionPercentageShare, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GasProductionPercentageShare, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.GasProductionScore, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GasProductionScore, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.GasProductionBand, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GasProductionBand, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.GasProductionTier, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GasProductionTier, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+
+
+            <p style="margin-top:1.5rem">
+
+                @if (ViewBag.IsUpdate == true)
+
+                {
+
+                    <input type="submit" value="Update" id="btnUpdate" name="cmd" class="btn btn-secondary pi-draggable" />
+                    <input type="button" value="Cancel" id="btncancelEdit" class="btn btn-danger pi-draggable" />
+                }
+
+                else
+
+                {
+
+                    <input type="submit" value="Save" id="btnSave" name="cmd" class="btn btn-secondary pi-draggable" />
+                    <input type="button" value="Cancel" id="btncancelCreate" class="btn btn-danger pi-draggable" />
+                }
+
+            </p>
+
+        </fieldset>
+    </div>
+}

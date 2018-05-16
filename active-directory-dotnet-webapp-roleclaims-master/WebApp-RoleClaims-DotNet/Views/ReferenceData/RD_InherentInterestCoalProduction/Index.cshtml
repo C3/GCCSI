@@ -1,0 +1,67 @@
+﻿@model IEnumerable<GCCSI_CO2RE.Models.RD_InherentInterestCoalProduction>
+
+
+@{
+    Layout = null;
+}
+
+<div style="text-align:right">
+    @Html.ActionLink("Create New", "AddEditInherentCoalProduction", null, new { @id = "createDialog", @class = "btn btn-primary pi-draggable" })
+</div>
+
+<div class="datatable-wide" style="padding-left: 0; padding-right: 0">
+    <br />
+    <div style="width:100%">
+        <table id="coalProdGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CoalProductionPercentageShare)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CoalProductionScore)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CoalProductionBand)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CoalProductionTier)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CoalProductionPercentageShare)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CoalProductionScore)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CoalProductionBand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CoalProductionTier)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "AddEditInherentCoalProduction", new { id = item.InherentInterestCoalProductionID }, new { @class = "editDialog" }) |
+                        @Html.ActionLink("Details", "InherentCoalProductionDetails", new { id = item.InherentInterestCoalProductionID }, new { @class = "detailsDialog" }) |
+                        @Html.ActionLink("Delete", "DeleteInherentCoalProduction", new { id = item.InherentInterestCoalProductionID }, new { @class = "confirmDialog" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<script>
+    $('#coalProdGrid').DataTable({
+        responsive: true,
+        searching: false,
+        autoWidth: true
+    });
+</script>

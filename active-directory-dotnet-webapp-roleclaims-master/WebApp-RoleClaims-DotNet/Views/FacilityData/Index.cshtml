@@ -1,0 +1,494 @@
+﻿@model IEnumerable<GCCSI_CO2RE.Models.FacilityData>
+
+@{
+    ViewBag.Title = "Facility Data";
+}
+<div style="display:none" id="gccsiSection">@ViewBag.Title</div>
+
+<div class="container-fluid">
+    <div class="row px-3 d-flex align-items-center">
+        <div class="col-md-6">
+            <div class="d-flex">
+                <ul class="breadcrumb my-3" style="margin-bottom:0px;margin-top:0px">
+                    <li class="breadcrumb-item">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" id="indexBreadcrum">Facility Data</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 my-3">
+            <ul class="nav nav-tabs">
+               @if (Request.IsAuthenticated)
+               {
+                   if (User.IsInRole("Admin"))
+                   {
+                    @Html.Action("GetAdminTabList", "PowerBITabs")
+                   }
+                   else if (User.IsInRole("InternalReader"))
+                   {
+                    @Html.Action("GetInternalReaderTabList", "PowerBITabs")
+                   }
+                   else if (User.IsInRole("MemberReader"))
+                   {
+                    @Html.Action("GetPublicAndMemberUserTabList", "PowerBITabs")
+                   }
+                   else
+                   {
+                    @Html.Action("GetPublicAndMemberUserTabList", "PowerBITabs")
+                   }
+               }
+               else
+               {
+                @Html.Action("GetPublicAndMemberUserTabList", "PowerBITabs")
+               }
+            </ul>
+            <div class="tab-content mt-2">
+                @if (Request.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <div id="tabone" role="tabpanel">
+                            <div id="yearAndCreateFacility" style="display:flex;align-items: flex-end; flex-direction:column;">
+                                <div style="display:flex; flex-flow:row; align-items:center ">
+                                    <div id="createRowDiv" class="my-2 d-flex justify-content-end" style="padding-right:10px">
+                                        @Html.ActionLink("Create New", "AddEditRecord", null, new { @class = "createDialogButton btn btn-primary pi-draggable" })
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-end align-items-center">
+                                            <div style="font-size:20pt;">
+                                                <b>
+                                                    Year:&nbsp;
+                                                </b>
+                                            </div>
+                                            <select id="yearFilter" class="dropdownoption">
+                                                <option value="All">All</option>
+                                                @foreach (var year in ViewBag.PossibleYears)
+                                                {
+                                                    <option value="@year.YearName">@year.YearName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="datatable-wide" style="padding-left: 0; padding-right: 0">
+                                <br />
+                                <div style="width:100%">
+
+                                    <table id="facilityGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0">
+                                        <thead style="font-size:9px">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Title)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Proponents)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CaptureCapacity)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CaptureCapacityMin)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CaptureCapacityMax)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.FacilityCaptureTypeID)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CurrencyDate)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.ExcludeFromMap_HideInformation)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Industry_Feedstock)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CaptureSource)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CaptureMethod)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CaptureLatitude)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CaptureLongitude)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.OperationDate)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategoryName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.FacilityStatus.FacilityStatusName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Region.RegionName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Country.CountryName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Location)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.ShortDescription)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.StorageType)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.StorageLatitude)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.StorageLongitude)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.TransportationType)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.TransportationDistance)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.FacilityIndustry.FacilityIndustryName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.FacilityDescription)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.FacilityStorageCode.FacilityStorageCodeName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.FacilityTransportCode.FacilityTransportCodeName)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.NewBuildOrRetrofit)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.StorageFormationAndDepth)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.UtilisationType)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.KeyMilestone)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.ReferenceLink)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Summary)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Note)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Year.YearName)
+                                                </th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr style="font-size:11px">
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.Title)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.Proponents)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.CaptureCapacity)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.CaptureCapacityMin)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.CaptureCapacityMax)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.FacilityCaptureType.FacilityCaptureTypeName)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.CurrencyDate)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.ExcludeFromMap_HideInformation)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.Industry_Feedstock)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.CaptureSource)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.CaptureMethod)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.CaptureLatitude)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.CaptureLongitude)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.OperationDate)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.FacilityCategory.FacilityCategoryName)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.FacilityStatus.FacilityStatusName)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.Region.RegionName)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.Country.CountryName)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.Location)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.ShortDescription)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.StorageType)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.StorageLatitude)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.StorageLongitude)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.TransportationType)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.TransportationDistance)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.FacilityIndustry.FacilityIndustryName)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.FacilityDescription)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.FacilityStorageCode.FacilityStorageCodeName)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.FacilityTransportCode.FacilityTransportCodeName)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.NewBuildOrRetrofit)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.StorageFormationAndDepth)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.UtilisationType)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.KeyMilestone)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.ReferenceLink)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.Summary)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.Note)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="height:150px; overflow-y:auto">
+                                                        @Html.DisplayFor(modelItem => item.Year.YearName)
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Edit", "AddEditRecord", new { id = item.FacilityDataID }, new { @class = "editDialog" }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.FacilityDataID }, new { @class = "detailsDialog" }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.FacilityDataID }, new { @class = "confirmDialog" })
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </table>
+
+
+                                    <div id="dialog-confirm" style="display: none">
+                                        <p>
+                                            <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+                                            Are you sure to delete ?
+                                        </p>
+                                    </div>
+                                    <div id="dialog-edit" style="display: none">
+                                    </div>
+                                    <div id="dialog-create" style="display: none">
+                                    </div>
+                                    <div id="dialog-view" style="display: none">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                @if (Request.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        @Html.Action("GetAdminPowerBIContent", "PowerBITabs", new { id = 2 })
+                    }
+                    else if (User.IsInRole("InternalReader"))
+                    {
+                        @Html.Action("GetInternalReaderPowerBIContent", "PowerBITabs", new { id = 2 })
+                    }
+                    else if (User.IsInRole("MemberReader"))
+                    {
+                        @Html.Action("GetMemberReaderPowerBIContent", "PowerBITabs", new { id = 2 })
+                    }
+                    else
+                    {
+                        @Html.Action("GetMemberReaderPowerBIContent", "PowerBITabs", new { id = 2 })
+                    }
+                }
+                else //Public user.
+                {
+                    @Html.Action("GetPublicPowerBIContent", "PowerBITabs", new { id = 2 })
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        @Scripts.Render("~/Scripts/dataEntryShared.js")
+
+        <script>
+
+    $('#facilityGrid').DataTable({
+        responsive: true,
+        searching: true,
+        autoWidth: false
+    });
+
+
+    $(document).ready(function () {
+        //Assurance to hide column.
+        var table = $('#facilityGrid').DataTable();
+        var column = table.column(36);
+        column.visible(false);
+
+        //Add on change function.
+        $("#yearFilter").change(function () {
+            //On the user change of year filter we want to update the table.
+            var yearWanted = document.getElementById("yearFilter").value;
+            var table = $('#facilityGrid').dataTable();
+            if (yearWanted == "All") {
+                table.fnFilter("", 36, false)
+            }
+            else {
+                table.fnFilter(yearWanted, 36);
+            }
+        });
+
+        //Once the page has loaded -- try to select current year from year selection.
+        $("#yearFilter").val("All");
+
+        //Add the year and create div to the right location.
+        var $x = $('#facilityGrid_filter');
+        $x.replaceWith($("#yearAndCreateFacility"));
+    });
+        </script>
+
+
+    }
+}

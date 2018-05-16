@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GCCSI_CO2RE.Models.RD_FacilityCategory>
+@{
+    Layout = null;
+}
+<div style="text-align:right">
+    @Html.ActionLink("Create New", "AddEditFacilityCategory", null, new { @id = "createDialog", @class = "btn btn-primary pi-draggable" })
+</div>
+
+<div class="datatable-wide" style="padding-left: 0; padding-right: 0">
+    <br />
+    <div style="width:100%">
+        <table id="facCategory" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FacilityCategoryName)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FacilityCategoryName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "AddEditFacilityCategory", new { id = item.FacilityCategoryID }, new { @class = "editDialog" }) |
+                        @Html.ActionLink("Details", "FacilityCategoryDetails", new { id = item.FacilityCategoryID }, new { @class = "detailsDialog" }) |
+                        @Html.ActionLink("Delete", "DeleteFacilityCategory", new { id = item.FacilityCategoryID }, new { @class = "confirmDialog" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<script>
+    $('#facCategory').DataTable({
+        responsive: true,
+        searching: false,
+        autoWidth: true
+    });
+</script>
+
+
+

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GCCSI_CO2RE.Models.RD_Region>
+
+@{
+    Layout = null;
+}
+
+<div style="text-align:right">
+    @Html.ActionLink("Create New", "AddEditRegion", null, new { @id = "createDialog", @class = "btn btn-primary pi-draggable" })
+</div>
+
+<div class="datatable-wide" style="padding-left: 0; padding-right: 0">
+    <br />
+    <div style="width:100%">
+        <table id="regionGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0">
+            <thead style="font-size:12px">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RegionName)
+                    </th>
+                    <th>Actions</th>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegionName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "AddEditRegion", new { id = item.RegionID }, new { @class = "editDialog" }) |
+                        @Html.ActionLink("Details", "RegionDetails", new { id = item.RegionID }, new { @class = "detailsDialog" }) |
+                        @Html.ActionLink("Delete", "DeleteRegion", new { id = item.RegionID }, new { @class = "confirmDialog" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
+
+<script>
+    $('#regionGrid').DataTable({
+        responsive: true,
+        searching: false,
+        autoWidth: true
+    });
+</script>
+

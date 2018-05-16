@@ -1,0 +1,449 @@
+﻿@using GCCSI_CO2RE.Models
+
+@{
+    ViewBag.Title = "Reference Data";
+}
+
+<style>
+
+#sidebar {
+ height: 100vh;
+ background-color: #333;
+}
+
+#sidebar .list-group-item {
+ border-radius: 0;
+ background-color: #333;
+ color: #ccc;
+ border-left: 0;
+ border-right: 0;
+ border-color: #2c2c2c;
+ white-space: nowrap;
+ text-decoration: none;
+}
+
+  /* level 1*/
+#sidebar .list-group .collapse .list-group-item {
+ padding-left: 20px;
+}
+
+/* level 2*/
+#sidebar .list-group .collapse > .collapse .list-group-item {
+ padding-left: 30px;
+}
+
+/* level 3*/
+#sidebar .list-group .collapse > .collapse > .collapse .list-group-item {
+ padding-left: 40px;
+}
+
+/* highlight active menu */
+#sidebar .list-group-item:not(.collapsed) {
+ background-color: #222;
+}
+
+/* closed state icon */
+#sidebar .list-group .list-group-item[aria-expanded=”false”]::after {
+  content: "\f0d7";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 5px;
+}
+
+/* open state */
+#sidebar .list-group .list-group-item[aria-expanded=”true”] {
+  background-color: #222;
+}
+/* open state icon */
+#sidebar .list-group .list-group-item[aria-expanded=”true”]::after {
+  content: "\f0da";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 5px;
+}
+
+
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 col-xs-1" id="sidebar" style="max-width:15%">
+            <div class="list-group">
+                <a href="#" class="list-group-item" id="yearButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Year</span>
+                </a>
+                <a href="#" class="list-group-item" id="regionDataButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Region</span>
+                </a>
+                <a href="#" class="list-group-item" id="locationDataButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Country</span>
+                </a>
+                <a href="#" class="list-group-item" id="storageCriteriaButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Storage Criteria</span>
+                </a>
+                <a href="#" class="list-group-item" id="lrButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Legal &amp; Regulatory - Band</span>
+                </a>
+                <a href="#" class="list-group-item" id="captureTypeButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Facilities - Capture Type</span>
+                </a>
+                <a href="#" class="list-group-item" id="categoryTypeButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Facilities - Category</span>
+                </a>
+                <a href="#" class="list-group-item" id="industryDataButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Facilities - Industry</span>
+                </a>
+                <a href="#" class="list-group-item" id="facStatusDataButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Facilities - Status</span>
+                </a>
+                <a href="#" class="list-group-item" id="facStoreCodeDataButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Facilities - Storage</span>
+                </a>
+                <a href="#" class="list-group-item" id="facTransCodeDataButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Facilities - Transport</span>
+                </a>
+                <a href="#" class="list-group-item" id="policyListOptionButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Policy - List Option</span>
+                </a>
+                <a href="#" class="list-group-item" id="policyListStatusButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Policy - List Status</span>
+                </a>
+                <a href="#" class="list-group-item" id="policyOptionButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Policy - Option</span>
+                </a>
+                <a href="#" class="list-group-item" id="policyStatusButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Policy - Status</span>
+                </a>
+                <a href="#" class="list-group-item" id="policyTypeButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Policy - Type</span>
+                </a>
+                <a href="#" class="list-group-item" id="policyWeightButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Policy - Weight</span>
+                </a>
+
+                <a href="#" class="list-group-item" id="coalConsumptionButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Inherent Interest - Coal Consumption</span>
+                </a>
+                <a href="#" class="list-group-item" id="coalProductionButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Inherent Interest - Coal Production</span>
+                </a>
+                <a href="#" class="list-group-item" id="gasConsumptionButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Inherent Interest - Gas Consumption</span>
+                </a>
+                <a href="#" class="list-group-item" id="gasProcuctionButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Inherent Interest - Gas Production</span>
+                </a>
+                <a href="#" class="list-group-item" id="oilConsumptionButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Inherent Interest - Oil Consumption</span>
+                </a>
+                <a href="#" class="list-group-item" id="oilProductionButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Inherent Interest - Oil Production</span>
+                </a>
+                <a href="#" class="list-group-item" id="inhIntWeightButton">
+                    <i class="fa"></i>
+                    <span class="hidden-sm-down">Inherent Interest - Weight</span>
+                </a>
+
+            </div>
+        </div>
+        <main class="col-md-9 col-xs-11" id="mainContent">
+
+        </main>
+    </div>
+</div>
+
+<div id="dialog-confirm" style="display: none">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+        Are you sure to delete ?
+    </p>
+</div>
+<div id="dialog-edit" style="display: none">
+</div>
+<div id="dialog-create" style="display: none">
+</div>
+<div id="dialog-view" style="display: none">
+</div>
+@Scripts.Render("~/Scripts/dataEntryShared.js")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajaxSetup({ cache: false });
+
+        $('#yearButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetYearPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#regionDataButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetRegionPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#locationDataButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetLocationPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#storageCriteriaButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetStorageCriteriaPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#lrButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetLRBandPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#captureTypeButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetCaptureTypePartialView")');
+            $(".loading").hide();
+        });
+
+
+        $('#categoryTypeButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetFacilityCategoryPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#industryDataButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetFacilityIndustryPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#facStatusDataButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetFacilityStatusPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#facStoreCodeDataButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetFacilityStorageCodePartialView")');
+            $(".loading").hide();
+        });
+
+        $('#facTransCodeDataButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetFacilityTransportCodePartialView")');
+            $(".loading").hide();
+        });
+
+        $('#policyListOptionButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetPolicyListOptionPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#policyListStatusButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetPolicyListStatusPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#policyOptionButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetPolicyOptionPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#policyStatusButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetPolicyStatusPartialView")');
+            $(".loading").hide();
+        });
+
+        $('#policyTypeButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetPolicyTypePartialView")');
+            $(".loading").hide();
+        });
+
+        $('#policyWeightButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetPolicyWeightPartialView")');
+            $(".loading").hide();
+        });
+        $('#coalConsumptionButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetInherentCoalConsumptionView")');
+            $(".loading").hide();
+        });
+        $('#coalProductionButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetInherentCoalProductionView")');
+            $(".loading").hide();
+        });
+        $('#gasConsumptionButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetInherentGasConsumptionView")');
+            $(".loading").hide();
+        });
+        $('#gasProcuctionButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetInherentGasProductionView")');
+            $(".loading").hide();
+        });
+        $('#oilConsumptionButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetInherentOilConsumptionView")');
+            $(".loading").hide();
+        });
+        $('#oilProductionButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetInherentOilProductionView")');
+            $(".loading").hide();
+        });
+        $('#inhIntWeightButton').click(function () {
+            $(".loading").show();
+            $('#mainContent').load('@Url.Action("GetInherentWeightView")');
+            $(".loading").hide();
+        });
+
+
+
+        var pageToLoad = @(ViewBag.PageNum);
+        if(pageToLoad != null){
+            if(pageToLoad == 1){
+                $('#regionDataButton').trigger('click');
+            }
+            else if(pageToLoad == 2){
+                  $('#locationDataButton').trigger('click');
+            }
+            else if(pageToLoad == 3){
+                $('#industryDataButton').trigger('click');
+            }
+            else if(pageToLoad == 4){
+                $('#captureTypeButton').trigger('click');
+            }
+            else if(pageToLoad == 5){
+                $('#facStatusDataButton').trigger('click');
+            }
+            else if(pageToLoad == 6){
+                $('#categoryTypeButton').trigger('click');
+            }
+            else if(pageToLoad == 7){
+                $('#facStoreCodeDataButton').trigger('click');
+            }
+            else if(pageToLoad == 8){
+                $('#facTransCodeDataButton').trigger('click');
+            }
+            else if(pageToLoad == 9){
+                $('#lrButton').trigger('click');
+            }
+            else if(pageToLoad == 10){
+                $('#policyListOptionButton').trigger('click');
+            }
+            else if(pageToLoad == 11){
+                $('#policyListStatusButton').trigger('click');
+            }
+            else if(pageToLoad == 12){
+                $('#policyOptionButton').trigger('click');
+            }
+            else if(pageToLoad == 13){
+                $('#policyStatusButton').trigger('click');
+            }
+            else if(pageToLoad == 14){
+                $('#policyTypeButton').trigger('click');
+            }
+            else if(pageToLoad == 15){
+                $('#policyWeightButton').trigger('click');
+            }
+            else if(pageToLoad == 16){
+                $('#storageCriteriaButton').trigger('click');
+            }
+            else if(pageToLoad == 17){
+                $('#yearButton').trigger('click');
+            }
+            else if(pageToLoad == 18){
+                $('#coalConsumptionButton').trigger('click');
+            }
+            else if(pageToLoad == 19){
+                $('#coalProductionButton').trigger('click');
+            }
+            else if(pageToLoad == 20){
+                $('#gasConsumptionButton').trigger('click');
+            }
+            else if(pageToLoad == 21){
+                $('#gasProcuctionButton').trigger('click');
+            }
+            else if(pageToLoad == 22){
+                $('#oilConsumptionButton').trigger('click');
+            }
+            else if(pageToLoad == 23){
+                $('#oilProductionButton').trigger('click');
+            }
+            else if(pageToLoad == 24){
+                $('#inhIntWeightButton').trigger('click');
+            }
+        }
+
+    });
+
+    // on window resize run function
+    $(window).resize(function () {
+        fluidDialog();
+    });
+
+    // catch dialog if opened within a viewport smaller than the dialog width
+    $(document).on("dialogopen", ".ui-dialog", function (event, ui) {
+        fluidDialog();
+    });
+
+    function fluidDialog() {
+        var $visible = $(".ui-dialog:visible");
+        // each open dialog
+        $visible.each(function () {
+            var $this = $(this);
+            var dialog = $this.find(".ui-dialog-content").data("dialog");
+            // if fluid option == true
+            if (dialog.options.fluid) {
+                var wWidth = $(window).width();
+                // check window width against dialog width
+                if (wWidth < dialog.options.maxWidth + 50) {
+                    // keep dialog from filling entire screen
+                    $this.css("max-width", "90%");
+                } else {
+                    // fix maxWidth bug
+                    $this.css("max-width", dialog.options.maxWidth);
+                }
+                //reposition dialog
+                //dialog.option("position", dialog.options.position);
+                dialog.option("position", ['50%', '50%']);
+            }
+        });
+
+    }
+</script>  

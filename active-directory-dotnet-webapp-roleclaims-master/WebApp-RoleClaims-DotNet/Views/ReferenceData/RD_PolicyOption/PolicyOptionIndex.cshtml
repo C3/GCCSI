@@ -1,0 +1,54 @@
+﻿@model IEnumerable<GCCSI_CO2RE.Models.RD_PolicyOption>
+
+@{
+    Layout = null;
+}
+
+<div style="text-align:right">
+    @Html.ActionLink("Create New", "AddEditPolicyOption", null, new { @id = "createDialog", @class = "btn btn-primary pi-draggable" })
+</div>
+
+<div class="datatable-wide" style="padding-left: 0; padding-right: 0">
+    <br />
+    <div style="width:100%">
+        <table id="polOptionGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PolicyOptionName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PolicyType.PolicyTypeName)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PolicyOptionName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PolicyType.PolicyTypeName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "AddEditPolicyOption", new { id = item.PolicyOptionID }, new { @class = "editDialog" }) |
+                        @Html.ActionLink("Details", "PolicyOptionDetails", new { id = item.PolicyOptionID }, new { @class = "detailsDialog" }) |
+                        @Html.ActionLink("Delete", "DeletePolicyOption", new { id = item.PolicyOptionID }, new { @class = "confirmDialog" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<script>
+    $('#polOptionGrid').DataTable({
+        responsive: true,
+        searching: false,
+        autoWidth: true
+    });
+</script>

@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BF85A21D-737E-4231-BC48-911F3F3123E8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GCCSI_CO2RE</RootNamespace>
+    <AssemblyName>GCCSI_CO2RE</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44313</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.ActiveDirectory.GraphClient, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Azure.ActiveDirectory.GraphClient.2.0.6\lib\portable-net40+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81\Microsoft.Azure.ActiveDirectory.GraphClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=2.22.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.22.302111727\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms, Version=2.22.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.22.302111727\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocol.Extensions, Version=1.0.2.28, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.2.202250711\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OpenIdConnect, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OpenIdConnect.3.0.1\lib\net45\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.PowerBI.Api, Version=2.0.12.18114, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.PowerBI.Api.2.0.12\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\Microsoft.PowerBI.Api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.PowerBI.Core, Version=1.1.11.17109, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.PowerBI.Core.1.1.11\lib\net45\Microsoft.PowerBI.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.0.1\lib\net45\Microsoft.Rest.ClientRuntime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.20622.1351, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.2.206221351\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\UserInfoClient.cs" />
+    <Compile Include="AuthorizeAttribute.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CCSReadinessIndexDatasController.cs" />
+    <Compile Include="Controllers\ClimateChangeController.cs" />
+    <Compile Include="Controllers\COREUpdatesController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FacilityDataController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InherentInterestDataController.cs" />
+    <Compile Include="Controllers\LegalRegulatoryDatasController.cs" />
+    <Compile Include="Controllers\PoliciesController.cs" />
+    <Compile Include="Controllers\PowerBITabsController.cs" />
+    <Compile Include="Controllers\ReferenceDataController.cs" />
+    <Compile Include="Controllers\StorageDataController.cs" />
+    <Compile Include="DAL\GCCSIContext.cs" />
+    <Compile Include="DAL\GCCSIInitializer.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CCSReadinessIndexData.cs" />
+    <Compile Include="Models\ClimateChangeData.cs" />
+    <Compile Include="Models\CO2REAreas.cs" />
+    <Compile Include="Models\ConsolidatedPolicyIndex.cs" />
+    <Compile Include="Models\COREUpdates.cs" />
+    <Compile Include="Models\EmissionsData.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\FacilityData.cs" />
+    <Compile Include="Models\InherentInterestData.cs" />
+    <Compile Include="Models\LegalRegulatoryData.cs" />
+    <Compile Include="Models\PolicyListData.cs" />
+    <Compile Include="Models\PowerBIReports.cs" />
+    <Compile Include="Models\RD_Country.cs" />
+    <Compile Include="Models\RD_FacilityCaptureType.cs" />
+    <Compile Include="Models\RD_FacilityCategory.cs" />
+    <Compile Include="Models\RD_FacilityCategoryStatus.cs" />
+    <Compile Include="Models\RD_FacilityIndustry.cs" />
+    <Compile Include="Models\RD_FacilityStatus.cs" />
+    <Compile Include="Models\RD_FacilityStorageCode.cs" />
+    <Compile Include="Models\RD_FacilityTransportCode.cs" />
+    <Compile Include="Models\RD_InherentInterestCoalConsumption.cs" />
+    <Compile Include="Models\RD_InherentInterestCoalProduction.cs" />
+    <Compile Include="Models\RD_InherentInterestGasConsumption.cs" />
+    <Compile Include="Models\RD_InherentInterestGasProduction.cs" />
+    <Compile Include="Models\RD_InherentInterestOilConsumption.cs" />
+    <Compile Include="Models\RD_InherentInterestOilProduction.cs" />
+    <Compile Include="Models\RD_InherentInterestWeight.cs" />
+    <Compile Include="Models\RD_LeadershipStatus.cs" />
+    <Compile Include="Models\RD_LRBand.cs" />
+    <Compile Include="Models\RD_PolicyListOption.cs" />
+    <Compile Include="Models\RD_PolicyListStatus.cs" />
+    <Compile Include="Models\RD_PolicyOption.cs" />
+    <Compile Include="Models\RD_PolicyStatus.cs" />
+    <Compile Include="Models\RD_PolicyType.cs" />
+    <Compile Include="Models\RD_PolicyWeight.cs" />
+    <Compile Include="Models\RD_Region.cs" />
+    <Compile Include="Models\RD_StorageCriteria.cs" />
+    <Compile Include="Models\RD_StorageWeight.cs" />
+    <Compile Include="Models\RD_Year.cs" />
+    <Compile Include="Models\StorageData.cs" />
+    <Compile Include="Models\StorageEstimatesData.cs" />
+    <Compile Include="Models\Task.cs" />
+    <Compile Include="Models\TokenCacheEntry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utils\ConfigHelper.cs" />
+    <Compile Include="Utils\Globals.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\GCCSI_CO2RE.mdf" />
+    <Content Include="App_Data\GCCSI_CO2RE_log.ldf">
+      <DependentUpon>GCCSI_CO2RE.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\my-jquery-ui.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\dataTables.bootstrap.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\dataTables.bootstrap.min.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\dataTables.bootstrap4.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\dataTables.bootstrap4.min.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\dataTables.foundation.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\dataTables.foundation.min.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\dataTables.jqueryui.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\dataTables.jqueryui.min.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\dataTables.semanticui.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\dataTables.semanticui.min.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\jquery.dataTables.css" />
+    <Content Include="customStyles\DataTables-1.10.16\css\jquery.dataTables.min.css" />
+    <Content Include="customStyles\DataTables-1.10.16\images\sort_asc.png" />
+    <Content Include="customStyles\DataTables-1.10.16\images\sort_asc_disabled.png" />
+    <Content Include="customStyles\DataTables-1.10.16\images\sort_both.png" />
+    <Content Include="customStyles\DataTables-1.10.16\images\sort_desc.png" />
+    <Content Include="customStyles\DataTables-1.10.16\images\sort_desc_disabled.png" />
+    <Content Include="customStyles\DataTables-1.10.16\js\dataTables.bootstrap.js" />
+    <Content Include="customStyles\DataTables-1.10.16\js\dataTables.bootstrap.min.js" />
+    <Content Include="customStyles\DataTables-1.10.16\js\dataTables.bootstrap4.js" />
+    <Content Include="customStyles\DataTables-1.10.16\js\dataTables.bootstrap4.min.js" />
+    <Content Include="customStyles\DataTables-1.10.16\js\dataTables.foundation.js" />
+    <Content Include="customStyles\DataTables-1.10.16\js\dataTables.foundation.min.js" />
+    <Content Include="customStyles\DataTables-1.10.16\js\dataTables.jqueryui.js" />
+    <Content Include="customStyles\DataTables-1.10.16\js\dataTables.jqueryui.min.js" />
+    <Content Include="customStyles\DataTables-1.10.16\js\dataTables.semanticui.js" />
+    <Content Include="customStyles\DataTables-1.10.16\js\dataTables.semanticui.min.js" />
+    <Content Include="customStyles\DataTables-1.10.16\js\jquery.dataTables.js" />
+    <Content Include="customStyles\DataTables-1.10.16\js\jquery.dataTables.min.js" />
+    <Content Include="customStyles\dataTables.bootstrap4.min.css" />
+    <Content Include="customStyles\datatables.css" />
+    <Content Include="customStyles\datatables.js" />
+    <Content Include="customStyles\datatables.min.css" />
+    <Content Include="customStyles\datatables.min.js" />
+    <Content Include="customStyles\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="customStyles\gccsiLogo.png" />
+    <Content Include="customStyles\gccsiLogo_transparent.png" />
+    <Content Include="customStyles\gccsiTheme.css" />
+    <Content Include="customStyles\IconsArtwork\CO2RE_Icons-01-Policies.png" />
+    <Content Include="customStyles\IconsArtwork\CO2RE_Icons-02-Storage.png" />
+    <Content Include="customStyles\IconsArtwork\CO2RE_Icons-03-Facilities.png" />
+    <Content Include="customStyles\IconsArtwork\CO2RE_Icons-04-LegalRegulatory.png" />
+    <Content Include="customStyles\IconsArtwork\CO2RE_Icons-05-ClimateChange.png" />
+    <Content Include="customStyles\IconsArtwork\CO2RE_Icons-06-CO2REUpdates.png" />
+    <Content Include="customStyles\Images\1647090.jpg" />
+    <Content Include="customStyles\Images\backgroundCropped.jpg" />
+    <Content Include="customStyles\Images\CCS CO2RE Logo RGB Navy.png" />
+    <Content Include="customStyles\Images\CCS CO2RE Logo RGB Transport.png" />
+    <Content Include="customStyles\Images\loadingSpinner.gif" />
+    <Content Include="customStyles\logo_overlay.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Icon.png" />
+    <Content Include="Scripts\AadPickerLibrary.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="fonts\Gotham-Black.otf" />
+    <Content Include="fonts\ProximaNovaA-Bold.otf" />
+    <Content Include="fonts\ProximaNovaA-Extrabld.otf" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dataEntryShared.js" />
+    <Content Include="customStyles\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="customStyles\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="customStyles\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="customStyles\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="customStyles\fonts\Gotham-Black.otf" />
+    <Content Include="customStyles\fonts\ProximaNovaA-Bold.otf" />
+    <Content Include="customStyles\fonts\ProximaNovaA-Extrabld.otf" />
+    <None Include="Properties\PublishProfiles\PARSAL - Web Deploy.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-ui.1.8.20.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\powerbi.js" />
+    <Content Include="Scripts\powerbi.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Error\Reauth.cshtml" />
+    <Content Include="Views\Error\ShowError.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\ClimateChange\_CCSReadinessDetails.cshtml" />
+    <Content Include="Views\ClimateChange\CCSReadinessDetails.cshtml" />
+    <Content Include="Views\ClimateChange\CCSReadinessEdit.cshtml" />
+    <Content Include="Views\ClimateChange\_CCSReadinessEdit.cshtml" />
+    <Content Include="Views\ClimateChange\CCSReadinessIndex.cshtml" />
+    <Content Include="Views\ClimateChange\ClimateChangeDataIndex.cshtml" />
+    <Content Include="Views\ClimateChange\ClimateChangeInitiativeDelete.cshtml" />
+    <Content Include="Views\ClimateChange\EmissionsIndex.cshtml" />
+    <Content Include="Views\ClimateChange\Index.cshtml" />
+    <Content Include="Views\ClimateChange\_ClimateChangeDetails.cshtml" />
+    <Content Include="Views\ClimateChange\_ClimateChangeEdit.cshtml" />
+    <Content Include="Views\ClimateChange\_EmissionsDetails.cshtml" />
+    <Content Include="Views\ClimateChange\_EmissionsEdit.cshtml" />
+    <Content Include="Views\COREUpdates\Create.cshtml" />
+    <Content Include="Views\COREUpdates\Delete.cshtml" />
+    <Content Include="Views\COREUpdates\Details.cshtml" />
+    <Content Include="Views\COREUpdates\Edit.cshtml" />
+    <Content Include="Views\COREUpdates\Index.cshtml" />
+    <Content Include="Views\COREUpdates\_Edit.cshtml" />
+    <Content Include="Views\FacilityData\Create.cshtml" />
+    <Content Include="Views\FacilityData\Delete.cshtml" />
+    <Content Include="Views\FacilityData\Details.cshtml" />
+    <Content Include="Views\FacilityData\Edit.cshtml" />
+    <Content Include="Views\FacilityData\Index.cshtml" />
+    <Content Include="Views\FacilityData\_Edit.cshtml" />
+    <Content Include="Views\ClimateChange\InherentIndustryDetails.cshtml" />
+    <Content Include="Views\ClimateChange\InherentInterestEdit.cshtml" />
+    <Content Include="Views\ClimateChange\InherentInterestIndex.cshtml" />
+    <Content Include="Views\ClimateChange\_InherentIndustryDetails.cshtml" />
+    <Content Include="Views\ClimateChange\_InherentInterestEdit.cshtml" />
+    <Content Include="Views\LegalRegulatoryDatas\Create.cshtml" />
+    <Content Include="Views\LegalRegulatoryDatas\Delete.cshtml" />
+    <Content Include="Views\LegalRegulatoryDatas\Details.cshtml" />
+    <Content Include="Views\LegalRegulatoryDatas\Edit.cshtml" />
+    <Content Include="Views\LegalRegulatoryDatas\Index.cshtml" />
+    <Content Include="Views\LegalRegulatoryDatas\_Details.cshtml" />
+    <Content Include="Views\LegalRegulatoryDatas\_Edit.cshtml" />
+    <Content Include="Views\Policies\ConsolidatedPolicyIndex.cshtml" />
+    <Content Include="Views\Policies\Index.cshtml" />
+    <Content Include="Views\Policies\PolicyListDetails.cshtml" />
+    <Content Include="Views\Policies\PolicyListEdit.cshtml" />
+    <Content Include="Views\Policies\PolicyListIndex.cshtml" />
+    <Content Include="Views\Policies\_ConsolidatedPolicyDetails.cshtml" />
+    <Content Include="Views\Policies\_ConsolidatedPolicyEdit.cshtml" />
+    <Content Include="Views\Policies\_PolicyListDetails.cshtml" />
+    <Content Include="Views\Policies\_PolicyListEdit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_Country\CountryIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_Country\_CountryDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_Country\_CountryEdit.cshtml" />
+    <Content Include="Views\ReferenceData\Index.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityCaptureType\CaptureTypeIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityCaptureType\_CaptureTypeDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityCaptureType\_CaptureTypeEdit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityCategory\FacilityCategoryIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityCategory\_FacilityCategoryDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityCategory\_FacilityCategoryEdit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityIndustry\FacilityIndustryIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityIndustry\_FacilityIndustryDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityIndustry\_FacilityIndustryEdit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityStatus\FacilityStatusDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityStatus\FacilityStatusIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityStatus\_FacilityStatusEdit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityStorageCode\FacilityStorageCodeIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityStorageCode\_FacilityStorageCodeDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityStorageCode\_FacilityStorageCodeEdit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityTransportCode\FacilityTransportCodeIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityTransportCode\_FacilityTransportCodeDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_FacilityTransportCode\_FacilityTransportCodeEdit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_LRBand\LRBandIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_LRBand\_LRBandDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_LRBand\_LRBandEdit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyListOption\PolicyListOptionIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyListOption\_EditPolicyListOption.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyListOption\_PolicyListOptionDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyListStatus\PolicyListStatusIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyListStatus\_EditPolicyListStatus.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyListStatus\_PolicyListStatusDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyOption\PolicyOptionIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyOption\_EditPolicyOption.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyOption\_PolicyOptionDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyStatus\PolicyStatusIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyStatus\_EditPolicyStatus.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyStatus\_PolicyStatusDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyType\PolicyTypeIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyType\_EditPolicyType.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyType\_PolicyTypeDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyWeight\PolicyWeightIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyWeight\_EditPolicyWeight.cshtml" />
+    <Content Include="Views\ReferenceData\RD_PolicyWeight\_PolicyWeightDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_Region\RegionDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_Region\RegionEdit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_Region\RegionIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_Region\_RegionDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_Region\_RegionEdit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_StorageCriteria\StorageCriteriaIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_StorageCriteria\_EditStorageCriteria.cshtml" />
+    <Content Include="Views\ReferenceData\RD_StorageCriteria\_StorageCriteriaDetails.cshtml" />
+    <Content Include="Views\ReferenceData\RD_Year\YearIndex.cshtml" />
+    <Content Include="Views\ReferenceData\RD_Year\_EditYear.cshtml" />
+    <Content Include="Views\ReferenceData\RD_Year\_YearDetails.cshtml" />
+    <Content Include="Views\StorageData\Create.cshtml" />
+    <Content Include="Views\StorageData\Delete.cshtml" />
+    <Content Include="Views\StorageData\Details.cshtml" />
+    <Content Include="Views\StorageData\Edit.cshtml" />
+    <Content Include="Views\StorageData\Index.cshtml" />
+    <Content Include="Views\StorageData\_Details.cshtml" />
+    <Content Include="Views\StorageData\_Edit.cshtml" />
+    <Content Include="Views\ClimateChange\StorageEstimatesDetails.cshtml" />
+    <Content Include="Views\ClimateChange\StorageEstimateEdit.cshtml" />
+    <Content Include="Views\ClimateChange\StorageEstimatesIndex.cshtml" />
+    <Content Include="Views\ClimateChange\_StorageEstimatesDetails.cshtml" />
+    <Content Include="Views\ClimateChange\_StorageEstimateEdit.cshtml" />
+    <Content Include="Views\COREUpdates\AdminIndex.cshtml" />
+    <Content Include="Views\FacilityData\_Details.cshtml" />
+    <Content Include="Views\COREUpdates\_Details.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestCoalConsumption\Index.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestCoalConsumption\_Edit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestCoalConsumption\_Details.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestCoalProduction\Index.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestCoalProduction\_Details.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestCoalProduction\_Edit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestGasConsumption\Index.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestGasConsumption\_Edit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestGasConsumption\_Details.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestGasProduction\Index.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestGasProduction\_Edit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestGasProduction\_Details.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestOilConsumption\Index.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestOilConsumption\_Details.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestOilConsumption\_Edit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestOilProduction\Index.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestOilProduction\_Edit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestOilProduction\_Details.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestWeight\Index.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestWeight\_Edit.cshtml" />
+    <Content Include="Views\ReferenceData\RD_InherentInterestWeight\_Details.cshtml" />
+    <Content Include="Scripts\powerbi.js.map" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4628</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44322/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

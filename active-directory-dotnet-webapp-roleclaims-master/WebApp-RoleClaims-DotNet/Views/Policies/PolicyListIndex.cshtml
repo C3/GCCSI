@@ -1,0 +1,173 @@
+﻿@model IEnumerable<GCCSI_CO2RE.Models.PolicyListData>
+
+@{
+    ViewBag.Title = "Policy List Data";
+}
+
+
+
+
+
+<div id="yearAndCreateFacility" style="display:flex;align-items: flex-end; flex-direction:column;">
+    <div style="display:flex; flex-flow:row; align-items:center ">
+        <div id="createRowDiv" class="my-2 d-flex justify-content-end" style="padding-right:10px">
+            @Html.ActionLink("Create New", "AddEditPolicyListRecord", null, new { @class = "createDialogButton btn btn-primary pi-draggable" })
+        </div>
+        <div>
+            <div class="d-flex justify-content-end align-items-center">
+                <div style="font-size:20pt;">
+                    <b>
+                        Year:&nbsp;
+                    </b>
+                </div>
+                <select id="yearFilter" class="dropdownoption">
+                    <option value="All">All</option>
+                    @foreach (var year in ViewBag.PossibleYears)
+                    {
+                        <option value="@year.YearName">@year.YearName</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="datatable-wide" style="padding-left: 0; padding-right: 0">
+    <br />
+    <div style="width:100%">
+        <table id="demoGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0">
+            <thead style="font-size:12px">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PolicyListOption)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PolicyName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PolicyDescription)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PolicyURL)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PolicyListStatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Summary)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Note)
+                    </th>
+                    <th style="display:none">
+                        @Html.DisplayNameFor(model => model.Year)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country.CountryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PolicyListOption.PolicyListOptionName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PolicyName)
+                    </td>
+                    <td style="width:40% ;text-align:right">
+                        @Html.DisplayFor(modelItem => item.PolicyDescription)
+                    </td>
+                    <td style="width:20%; word-break:break-all">
+                        <a href="@Html.DisplayFor(modelItem => item.PolicyURL)" target="_blank">@Html.DisplayFor(modelItem => item.PolicyURL)</a>
+                    </td>
+                    <td style="text-align:right">
+                        @Html.DisplayFor(modelItem => item.PolicyListStatus.PolicyListStatusName)
+                    </td>
+                    <td style="width:40%; font-size:14px">
+                        @if (!string.IsNullOrEmpty(item.Summary))
+                        {
+                            <div style="overflow:scroll; height: 200px">
+                                @Html.DisplayFor(modelItem => item.Summary)
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                @Html.DisplayFor(modelItem => item.Summary)
+                            </div>
+                        }
+
+                    </td>
+                    <td style="width:40%; font-size:14px">
+                        @if (!string.IsNullOrEmpty(item.Note))
+                        {
+                            <div style="overflow:scroll; height: 200px">
+                                @Html.DisplayFor(modelItem => item.Note)
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                @Html.DisplayFor(modelItem => item.Note)
+                            </div>
+                        }
+                    </td>
+                    <td style="display:none">
+                        @Html.DisplayFor(modelItem => item.Year.YearName)
+                    </td>
+                    <td style="white-space:nowrap">
+                        @Html.ActionLink("Edit", "AddEditPolicyListRecord", new { id = item.PolicyListDataID }, new { @class = "editDialog" }) |
+                        @Html.ActionLink("Details", "PolicyListDetails", new { id = item.PolicyListDataID }, new { @class = "detailsDialog" }) |
+                        @Html.ActionLink("Delete", "PolicyListDelete", new { id = item.PolicyListDataID }, new { @class = "confirmDialog" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+
+<script>
+    $('#demoGrid').DataTable({
+        responsive: true,
+        searching: true,
+        autoWidth: false
+    });
+
+    $(document).ready(function () {
+        //Assurance to hide column.
+        var table = $('#demoGrid').DataTable();
+        var column = table.column(8);
+        column.visible(false);
+
+        //Add on change function.
+        $("#yearFilter").change(function () {
+            //On the user change of year filter we want to update the table.
+            var yearWanted = document.getElementById("yearFilter").value;
+            var table = $('#demoGrid').dataTable();
+            if (yearWanted == "All") {
+                table.fnFilter("", 8, false)
+            }
+            else {
+                table.fnFilter(yearWanted, 8);
+            }
+        });
+
+        //Once the page has loaded -- try to select current year from year selection.
+        $("#yearFilter").val("All");
+
+        //Add the year and create div to the right location.
+        var $x = $('#demoGrid_filter');
+        $x.replaceWith($("#yearAndCreateFacility"));
+    });
+</script>
+
+

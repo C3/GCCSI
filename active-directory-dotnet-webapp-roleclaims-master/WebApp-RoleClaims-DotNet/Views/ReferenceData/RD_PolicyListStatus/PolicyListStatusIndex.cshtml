@@ -1,0 +1,47 @@
+﻿@model IEnumerable<GCCSI_CO2RE.Models.RD_PolicyListStatus>
+@{
+    Layout = null;
+}
+
+<div style="text-align:right">
+    @Html.ActionLink("Create New", "AddEditPolicyListStatus", null, new { @id = "createDialog", @class = "btn btn-primary pi-draggable" })
+</div>
+
+<div class="datatable-wide" style="padding-left: 0; padding-right: 0">
+    <br />
+    <div style="width:100%">
+        <table id="policyListStatusGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PolicyListStatusName)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PolicyListStatusName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "AddEditPolicyListStatus", new { id = item.PolicyListStatusID }, new { @class = "editDialog" }) |
+                        @Html.ActionLink("Details", "PolicyListStatusDetails", new { id = item.PolicyListStatusID }, new { @class = "detailsDialog" }) |
+                        @Html.ActionLink("Delete", "DeletePolicyListStatus", new { id = item.PolicyListStatusID }, new { @class = "confirmDialog" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<script>
+    $('#policyListStatusGrid').DataTable({
+        responsive: true,
+        searching: false,
+        autoWidth: true
+    });
+</script>

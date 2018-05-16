@@ -1,0 +1,67 @@
+﻿@model IEnumerable<GCCSI_CO2RE.Models.RD_InherentInterestGasConsumption>
+
+
+@{
+    Layout = null;
+}
+
+<div style="text-align:right">
+    @Html.ActionLink("Create New", "AddEditInherentGasConsumption", null, new { @id = "createDialog", @class = "btn btn-primary pi-draggable" })
+</div>
+
+<div class="datatable-wide" style="padding-left: 0; padding-right: 0">
+    <br />
+    <div style="width:100%">
+        <table id="gasConsGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GasConsumptionPercentageShare)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GasConsumptionScore)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GasConsumptionBand)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GasConsumptionTier)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GasConsumptionPercentageShare)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GasConsumptionScore)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GasConsumptionBand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GasConsumptionTier)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "AddEditInherentGasConsumption", new { id = item.InherentInterestGasConsumptionID }, new { @class = "editDialog" }) |
+                        @Html.ActionLink("Details", "InherentGasConsumptionDetails", new { id = item.InherentInterestGasConsumptionID }, new { @class = "detailsDialog" }) |
+                        @Html.ActionLink("Delete", "DeleteInherentGasConsumption", new { id = item.InherentInterestGasConsumptionID }, new { @class = "confirmDialog" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<script>
+    $('#gasConsGrid').DataTable({
+        responsive: true,
+        searching: false,
+        autoWidth: true
+    });
+</script>

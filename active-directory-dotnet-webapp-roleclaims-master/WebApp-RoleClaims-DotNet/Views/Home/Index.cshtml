@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "CO2RE";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<div class="text-center bg-homeblue py-4 homeMainContentDiv">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col d-flex align-items-stretch">
+                <div class="col-sm-3 homePageTableDiv">
+                    <a class="btn btn-policyGreen" style="width:inherit; height:inherit; white-space:normal" href="~/Policies">
+                        <div class="row">
+                            <div class="col">
+                                <img class="img-fluid-homepageIcons" src="~/customStyles/IconsArtwork/CO2RE_Icons-01-Policies.png" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h7 class="my-3">Policies</h7>
+                                <p class="homeButtonExp">
+                                    Small explanation of policies, Rovit apitio eaque velitistia solut
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-3 homePageTableDiv">
+                    <a class="btn btn-storageGreen" style="width:inherit; height:inherit; white-space:normal" href="~/StorageData">
+                        <div class="row">
+                            <div class="col">
+                                <img class="img-fluid-homepageIcons" src="~/customStyles/IconsArtwork/CO2RE_Icons-02-Storage.png" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h7 class="my-3">Storage</h7>
+                                <p class="homeButtonExp">
+                                    Small explanation of storage, Rovit apitio eaque velitistia solut
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-3 homePageTableDiv">
+                    <a class="btn btn-facilitiesOrange" style="width:inherit; height:inherit; white-space:normal" href="~/FacilityData">
+                        <div class="row">
+                            <div class="col">
+                                <img class="img-fluid-homepageIcons" src="~/customStyles/IconsArtwork/CO2RE_Icons-03-Facilities.png" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h7 class="my-3">Facilities</h7>
+                                <p class="homeButtonExp">
+                                    Small explanation of facilities, Rovit apitio eaque velitistia solut
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-sm-3 homePageTableDiv">
+                    <a class="btn btn-legalRegRed" style="width:inherit; height:inherit; white-space:normal" href="~/LegalRegulatoryDatas">
+                        <div class="row">
+                            <div class="col">
+                                <img class="img-fluid-homepageIcons" src="~/customStyles/IconsArtwork/CO2RE_Icons-04-LegalRegulatory.png" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h7 class="my-3">Legal &amp; Regulatory</h7>
+                                <p class="homeButtonExp">
+                                    Small explanation of legal &amp; regulatory, Rovit apitio eaque velitistia solut
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col d-flex align-items-stretch">
+                <div class="col-sm-6 homePageTableDiv">
+                    <a class="btn btn-climateChangeBlue" style="width:inherit; height:inherit; white-space:normal" href="~/ClimateChange">
+                        <div class="row">
+                            <div class="col-sm-4 homePageTableDiv">
+                                <div class="homePageTableDiv" style="align-self:center; flex-direction:column">
+                                    <img class="img-fluid-homepageIcons" src="~/customStyles/IconsArtwork/CO2RE_Icons-05-ClimateChange.png" style="align-self:center" />
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="homePageTableDiv" style="align-self:center; flex-direction:column">
+                                    <h7 class="my-3">Climate Change</h7>
+                                    <p class="homeButtonExp">
+                                        Small explanation of climate change, Rovit apitio eaque velitistia solut
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-6 homePageTableDiv">
+                    <a class="btn btn-climateChangeBlue" style="width:inherit; height:inherit; white-space:normal" href="~/COREUpdates">
+                        <div class="row">
+                            <div class="col-sm-4 homePageTableDiv">
+                                <div class="homePageTableDiv" style="align-self:center; flex-direction:column">
+                                    <img class="img-fluid-homepageIcons" src="~/customStyles/IconsArtwork/CO2RE_Icons-06-CO2REUpdates.png" style="align-self:center" />
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="homePageTableDiv" style="align-self:center; flex-direction:column">
+                                    <h7 class="my-3">CO<sub>2</sub>RE</h7>
+                                    <p class="homeButtonExp">
+                                        Small explanation of CO<sub>2</sub>RE, Rovit apitio eaque velitistia solut
+                                    </p>
+                                </div>
+                            </div>
+                            <span style="position:absolute; right:3%; top:5%; font-size:20px" class="badge badge-pill badge-success">
+                                @ViewBag.CoreUpdateCounter
+                                Updates
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col">
+                <a class="homePageBottomBannerTitle" href="">Understanding CCS</a>
+                <br />
+                <p class="homePageBottomBannerText">
+                    Small explanation of
+                    Understanding CCS. Tinvent fuga.
+                    Ilit eos cendita verum
+                </p>
+            </div>
+
+            <div class="col">
+                <a class="homePageBottomBannerTitle" href="">Resources</a>
+                <br />
+                <p class="homePageBottomBannerText">
+                    Small explanation of resources.
+                    Tinvent fuga. Ilit eos Vendita
+                    verum audam, que nobism
+                </p>
+                <div class="divider"></div>
+            </div>
+            <div class="col">
+                <a class="homePageBottomBannerTitle" href="">Institute Specialist Profiles</a>
+                <br />
+                <p class="homePageBottomBannerText">
+                    Small explanation of Institue
+                    Specialist Profiles. Tinvent fuga.
+                    Ilit eos vendita verum
+                </p>
+                <div class="divider"></div>
+            </div>
+            <div class="col">
+                <a class="homePageBottomBannerTitle" href="http://www.globalccsinstitute.com/webform/global-status-ccs-2017" target="_blank">Download the CCS Global Status Report</a>
+                <br />
+                <p class="homePageBottomBannerText">
+                    Small explanation of download.
+                    Tinvent fuga. Ilit eos Vendita verum
+                    audam, que nobism
+                </p>
+                <div class="divider"></div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</div>

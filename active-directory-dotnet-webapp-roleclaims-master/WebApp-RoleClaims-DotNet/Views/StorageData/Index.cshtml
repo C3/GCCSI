@@ -1,0 +1,425 @@
+﻿@model IEnumerable<GCCSI_CO2RE.Models.StorageData>
+
+@{
+ViewBag.Title = "Storage Data";
+}
+<div style="display:none" id="gccsiSection">@ViewBag.Title</div>
+<div class="container-fluid">
+    <div class="row px-3 d-flex align-items-center">
+        <div class="col-md-6">
+            <div class="d-flex">
+                <ul class="breadcrumb my-3" style="margin-bottom:0px;margin-top:0px">
+                    <li class="breadcrumb-item">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" id="indexBreadcrum">Storage</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 my-3">
+            <ul class="nav nav-tabs">
+                @if (Request.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        @Html.Action("GetAdminTabList", "PowerBITabs")
+                    }
+                    else if (User.IsInRole("InternalReader"))
+                    {
+                        @Html.Action("GetInternalReaderTabList", "PowerBITabs")
+                    }
+                    else if (User.IsInRole("MemberReader"))
+                    {
+                        @Html.Action("GetPublicAndMemberUserTabList", "PowerBITabs")
+                    }
+                    else
+                    {
+                        @Html.Action("GetPublicAndMemberUserTabList", "PowerBITabs")
+                    }
+                }
+                else
+                {
+                    @Html.Action("GetPublicAndMemberUserTabList", "PowerBITabs")
+                }
+            </ul>
+            <div class="tab-content mt-2">
+                @if (Request.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <div class="tab-pane fade" id="tabone" role="tabpanel">
+                            <div id="yearAndCreate" style="display:flex;align-items: flex-end; flex-direction:column;">
+                                <div style="display:flex; flex-flow:row; align-items:center ">
+                                    <div id="createRowDiv" class="my-2 d-flex justify-content-end" style="padding-right:10px">
+                                        @Html.ActionLink("Create New", "AddEditRecord", null, new { @id = "createDialog", @class = "btn btn-primary pi-draggable" })
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-end align-items-center">
+                                            <div style="font-size:20pt;">
+                                                <b>
+                                                    Year:&nbsp;
+                                                </b>
+                                            </div>
+                                            <select id="yearFilter" class="dropdownoption">
+                                                <option value="All">All</option>
+                                                @foreach (var year in ViewBag.PossibleYears)
+                                                {
+                                                    <option value="@year.YearName">@year.YearName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="datatable-wide" style="padding-left: 0; padding-right: 0">
+                                <br />
+                                <div style="width:100%">
+                                    <table id="demoGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0">
+                                        <thead style="font-size:12px">
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Region)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Country)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.ConventionalStoragePotential)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.RegionalPotential)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.RegionalAssessment)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Dataset)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.AssessmentMaturity)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Injection)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CommercialScaleInjection)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.KnowledgeDissemination)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Summary)
+                                                </th>
+                                                <th>
+                                                    Notes
+                                                </th>
+                                                <th style="display:none">
+                                                    @Html.DisplayNameFor(model => model.Year)
+                                                </th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Region.RegionName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Country.CountryName)
+                                                </td>
+                                                <td>
+                                                    @(item.ConventionalStoragePotential == null ? "-" : item.ConventionalStoragePotential.Value == true ? "Yes" : "No")
+                                                </td>
+                                                <td style="text-align:right">
+                                                    @Html.DisplayFor(modelItem => item.RegionalPotentialCriteria.StorageCriteriaCode)
+                                                </td>
+                                                <td style="text-align:right">
+                                                    @Html.DisplayFor(modelItem => item.RegionalAssessmentCriteria.StorageCriteriaCode)
+                                                </td>
+                                                <td style="text-align:right">
+                                                    @Html.DisplayFor(modelItem => item.DatasetCriteria.StorageCriteriaCode)
+                                                </td>
+                                                <td style="text-align:right">
+                                                    @Html.DisplayFor(modelItem => item.AssessmentMaturityCriteria.StorageCriteriaCode)
+                                                </td>
+                                                <td style="text-align:right">
+                                                    @Html.DisplayFor(modelItem => item.InjectionCriteria.StorageCriteriaCode)
+                                                </td>
+                                                <td style="text-align:right">
+                                                    @Html.DisplayFor(modelItem => item.CommercialScaleInjectionCriteria.StorageCriteriaCode)
+                                                </td>
+                                                <td style="text-align:right">
+                                                    @Html.DisplayFor(modelItem => item.KnowledgeDisseminationCriteria.StorageCriteriaCode)
+                                                </td>
+                                                <td style="width:60%; font-size:14px">
+                                                    @if (!string.IsNullOrEmpty(item.Summary))
+                                                    {
+                                                        <div style="overflow-y:scroll; height: 100px">
+                                                            @Html.DisplayFor(modelItem => item.Summary)
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div>
+                                                            @Html.DisplayFor(modelItem => item.Summary)
+                                                        </div>
+                                                    }
+
+                                                </td>
+                                                <td style="width:60%; font-size:14px">
+                                                    @if (!string.IsNullOrEmpty(item.Note))
+                                                    {
+                                                        <div style="overflow-y:scroll; height: 100px">
+                                                            @Html.DisplayFor(modelItem => item.Note)
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div>
+                                                            @Html.DisplayFor(modelItem => item.Note)
+                                                        </div>
+                                                    }
+                                                </td>
+                                                <td style="display:none">
+                                                    @Html.DisplayFor(modelItem => item.Year.YearName)
+                                                </td>
+                                                <td style="white-space:nowrap">
+                                                    @Html.ActionLink("Edit", "AddEditRecord", new { id = item.StorageDataID }, new { @class = "editDialog" }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.StorageDataID }, new { @class = "detailsDialog" }) |
+                                                    @Html.ActionLink("Delete", "DeleteStorageRecord", new { id = item.StorageDataID }, new { @class = "confirmDialog" })
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </table>
+
+                                    <div id="dialog-confirm" style="display: none">
+                                        <p>
+                                            <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+                                            Are you sure you want to delete this record?
+                                        </p>
+                                    </div>
+                                    <div id="dialog-edit" style="display: none">
+                                    </div>
+                                    <div id="dialog-view" style="display: none">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                @if (Request.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        @Html.Action("GetAdminPowerBIContent", "PowerBITabs", new { id = 5 })
+                    }
+                    else if (User.IsInRole("InternalReader"))
+                    {
+                        @Html.Action("GetInternalReaderPowerBIContent", "PowerBITabs", new { id = 5 })
+                    }
+                    else if (User.IsInRole("MemberReader"))
+                    {
+                        @Html.Action("GetMemberReaderPowerBIContent", "PowerBITabs", new { id = 5 })
+                    }
+                    else
+                    {
+                        @Html.Action("GetMemberReaderPowerBIContent", "PowerBITabs", new { id = 5 })
+                    }
+                }
+                else //Public user.
+                {
+                    @Html.Action("GetPublicPowerBIContent", "PowerBITabs", new { id = 5 })
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <script type="text/javascript">
+    $(document).ready(function () {
+        $.ajaxSetup({ cache: false });
+
+        $("#NodesToMove").detach().appendTo('#DestinationContainerNode')
+
+        //$(".dataTables_filter").css("display", "none");
+
+        $('body').on('click', '#createDialog', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $("#dialog-edit").dialog({
+                title: 'Add Storage Data Record',
+                autoOpen: false,
+                width: '100%', // overcomes width:'auto' and maxWidth bug
+                height: 'auto',
+                modal: true,
+                fluid: true, //new option
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).load(url);
+                },
+                close: function (event, ui) {
+                    $(this).dialog("destroy");
+                }
+            });
+            $("#dialog-edit").dialog('open');
+            return false;
+        });
+
+        $('body').on('click', '.editDialog', function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-edit").dialog({
+                title: 'Edit Storage Data Record',
+                autoOpen: false,
+                width: '100%', // overcomes width:'auto' and maxWidth bug
+                height: 'auto',
+                modal: true,
+                fluid: true, //new option
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).load(url);
+                },
+                close: function (event, ui) {
+                    $(this).dialog("destroy");
+                }
+            });
+            $("#dialog-edit").dialog('open');
+            return false;
+        });
+
+        $('body').on('click', '.detailsDialog', function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-view").dialog({
+                title: 'View Storage Data Record',
+                autoOpen: false,
+                width: '100%', // overcomes width:'auto' and maxWidth bug
+                height: 'auto',
+                modal: true,
+                fluid: true, //new option
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).load(url);
+                },
+                close: function (event, ui) {
+                    $(this).dialog("destroy");
+                }
+            });
+            $("#dialog-view").dialog('open');
+            return false;
+        });
+
+        $('body').on('click', '.confirmDialog', function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-confirm").dialog({
+                title: 'Delete Record',
+                autoOpen: false,
+                height: 'auto',
+                modal: true,
+                fluid: true, //new option
+                resizable: false,
+                buttons: {
+                    "OK": function () {
+                        $(this).dialog("close");
+                        window.location = url;
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            $("#dialog-confirm").dialog('open');
+            return false;
+        });
+
+
+        $('body').on('click', '#btncancelEdit', function (e) {
+            $("#dialog-edit").dialog('close');
+        });
+
+        $('body').on('click', '#btncancelView', function (e) {
+            $("#dialog-view").dialog('close');
+        });
+
+        //Assurance to hide column.
+        var table = $('#demoGrid').DataTable();
+        var column = table.column(12);
+        column.visible(false);
+
+        //Add on change function.
+        $("#yearFilter").change(function () {
+            //On the user change of year filter we want to update the table.
+            var yearWanted = document.getElementById("yearFilter").value;
+            var table = $('#demoGrid').dataTable();
+            if(yearWanted == "All"){
+                table.fnFilter("", 12, false)
+            }
+            else {
+                table.fnFilter(yearWanted, 12);
+            }
+        });
+
+        //Once the page has loaded -- try to select current year from year selection.
+        $("#yearFilter").val("All");
+
+    });
+
+    // on window resize run function
+    $(window).resize(function () {
+        fluidDialog();
+    });
+
+    // catch dialog if opened within a viewport smaller than the dialog width
+    $(document).on("dialogopen", ".ui-dialog", function (event, ui) {
+        fluidDialog();
+    });
+
+    function fluidDialog() {
+        var $visible = $(".ui-dialog:visible");
+        // each open dialog
+        $visible.each(function () {
+            var $this = $(this);
+            var dialog = $this.find(".ui-dialog-content").data("dialog");
+            // if fluid option == true
+            if (dialog.options.fluid) {
+                var wWidth = $(window).width();
+                // check window width against dialog width
+                if (wWidth < dialog.options.maxWidth + 50) {
+                    // keep dialog from filling entire screen
+                    $this.css("max-width", "90%");
+                } else {
+                    // fix maxWidth bug
+                    $this.css("max-width", dialog.options.maxWidth);
+                }
+                //reposition dialog
+                //dialog.option("position", dialog.options.position);
+                dialog.option("position", ['50%', '50%']);
+            }
+        });
+
+        $('#demoGrid_filter').replaceWith($("#yearAndCreate"));
+
+    }
+
+    $('#demoGrid').DataTable({
+        responsive: true,
+        searching: true,
+        autoWidth: true
+        });
+        </script>
+    }
+}
+

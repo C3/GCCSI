@@ -1,0 +1,363 @@
+﻿
+@using GCCSI_CO2RE.Models
+
+@model GCCSI_CO2RE.Models.ConsolidatedPolicyIndex
+
+@using (Html.BeginForm())
+{
+    <div>
+        <fieldset>
+
+            @if (ViewBag.IsUpdate == true)
+
+            {
+
+                @Html.HiddenFor(model => model.CPIID)
+
+            }
+
+
+            <table id="editableGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0" style="table-layout:fixed; font-size:12px; margin-top:1.5rem">
+                <thead style="text-align:center">
+                    <tr>
+                        <th rowspan="2">
+                            Country
+                        </th>
+                        <th rowspan="2">
+                            Region
+                        </th>
+                        <th colspan="3">
+                            Leadership
+                        </th>
+                        <th colspan="6">
+                            Fiscal Incentives
+                        </th>
+                        <th colspan="3">
+                            Public Finance
+                        </th>
+                        <th colspan="2">
+                            Market Mechanism
+                        </th>
+                        <th colspan="3">
+                            Institutional Strenghtening
+                        </th>
+                        <th colspan="3">
+                            Government Commitment
+                        </th>
+                        <th colspan="5">
+                            Information
+                        </th>
+                        <th colspan="2">
+                            International Collaboration
+                        </th>
+                        <th colspan="2">
+                            Voluntary Approaches
+                        </th>
+                        <th colspan="5">
+                            Regulatory/Legal
+                        </th>
+                        <th rowspan="2">
+                            References
+                        </th>
+                        <th rowspan="2">
+                            Summary
+                        </th>
+                        <th rowspan="2">
+                            Notes
+                        </th>
+                        <th rowspan="2">
+                            Actions
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Year.YearName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Leader)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FastFollower)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Detached)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FiT)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InfrastructureInvestments)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TaxRelief)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Taxes)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CarbonPricingArrangements)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegulatedPricing)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GrantsSubsidies)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RD_D_Funding)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LoanGuarantees)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CapAndTrade)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Offset)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StatutoryClimateCCSBody)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LegislatedEmissionTarget)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CarbonBudgetsWithReporting)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PolicyStatementsMinor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PolicyStatementsMajor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.WhitePaper)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ImplementationAdvice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KnowledgeSharing)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InternationalStandards)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Roadmaps)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TechnologyNeedsAssessments)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InternationalFundsContributes)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MOU)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PublicInitiative)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PrivateInitiative)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ObligationSchemes)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EmissionsPerformanceStandards)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CommercialScaleStorage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EnergyIntensityTargets)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OtherMandatoryRequirements)
+                        </th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.Country.CountryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.Region.RegionName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.Year.YearName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.Leader)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.FastFollower)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.Detached)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.FiTStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.InfrastructureInvestmentsStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.TaxReliefStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.TaxReliefStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.CarbonPricingArrangementsStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.RegulatedPricingStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.GrantsSubsidiesStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.RD_D_FundingStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.LoanGuaranteesStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.CapAndTradeStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.OffsetStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.StatutoryClimateCCSBodyStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.LegislatedEmissionTargetStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.CarbonBudgetsWithReportingStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.PolicyStatementsMinorStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.PolicyStatementsMajorStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.WhitePaperStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.ImplementationAdviceStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.KnowledgeSharingStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.InternationalStandardsStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.RoadmapsStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.TechnologyNeedsAssessmentsStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.InternationalFundsContributesStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.MOUStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.PublicInitiativeStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.PrivateInitiativeStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.ObligationSchemesStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.EmissionsPerformanceStandardsStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.CommercialScaleStorageStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.EnergyIntensityTargetsStatus.PolicyStatusName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.OtherMandatoryRequirementsStatus.PolicyStatusName)
+                    </td>
+                </tr>
+            </table>
+
+
+            <div>
+
+                <div class="editor-label">
+
+                    @Html.LabelFor(model => model.References)
+
+                </div>
+
+                <div class="editor-field" style="font-size:12px">
+
+                    @Html.TextAreaFor(model => model.References, new { @id = "referencesEntry", @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.References)
+
+                </div>
+
+                <div class="editor-label">
+
+                    @Html.LabelFor(model => model.Summary)
+
+                </div>
+
+                <div class="editor-field" style="font-size:12px">
+
+                    @Html.TextAreaFor(model => model.Summary, new { @id = "summaryEntry", @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.Summary)
+
+                </div>
+
+
+                <div class="editor-label">
+
+                    Notes
+
+                </div>
+
+                <div class="editor-field" style="font-size:12px">
+
+                    @Html.TextAreaFor(model => model.Note, new { @id = "noteEntry", @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.Note)
+
+                </div>
+            </div>
+
+            <p style="margin-top:1.5rem">
+
+                <input type="button" value="Close" id="btncancelView" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" />
+
+            </p>
+
+        </fieldset>
+    </div>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('textarea').each(function () {
+                    this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;');
+                    this.setAttribute('readonly', true);
+                }).on('input', function () {
+                    this.style.height = 'auto';
+                    this.style.height = (this.scrollHeight) + 'px';
+                });
+            });
+    </script>
+
+}

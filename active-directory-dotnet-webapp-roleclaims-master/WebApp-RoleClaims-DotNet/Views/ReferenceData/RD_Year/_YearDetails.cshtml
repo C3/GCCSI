@@ -1,0 +1,62 @@
+﻿
+@using GCCSI_CO2RE.Models
+@model GCCSI_CO2RE.Models.RD_Year
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <fieldset>
+            @if (ViewBag.IsUpdate == true)
+
+            {
+
+                @Html.HiddenFor(model => model.YearID)
+
+            }
+
+            <table id="editableGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0" style="table-layout:fixed; font-size:12px; margin-top:1.5rem">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YearName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YearStartDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YearEndDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YearHasData)
+                        </th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.YearName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.YearStartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.YearEndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.YearHasData)
+                    </td>
+                </tr>
+            </table>
+
+
+            <p style="margin-top:1.5rem">
+
+                <input type="button" value="Close" id="btncancelView" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" />
+
+            </p>
+
+        </fieldset>
+    </div>
+
+}

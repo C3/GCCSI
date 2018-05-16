@@ -1,0 +1,330 @@
+﻿@model GCCSI_CO2RE.Models.FacilityData
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>FacilityData</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Country.CountryName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Country.CountryName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FacilityCategory.FacilityCategoryName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FacilityCategory.FacilityCategoryName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FacilityIndustry.FacilityIndustryName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FacilityIndustry.FacilityIndustryName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FacilityStatus.FacilityStatusName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FacilityStatus.FacilityStatusName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FacilityStorageCode.FacilityStorageCodeName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FacilityStorageCode.FacilityStorageCodeName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FacilityTransportCode.FacilityTransportCodeName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FacilityTransportCode.FacilityTransportCodeName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Region.RegionName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Region.RegionName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Year.YearName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Year.YearName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.OperationDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.OperationDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CaptureCapacityMin)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CaptureCapacityMin)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CaptureCapacityMax)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CaptureCapacityMax)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CaptureCapacity)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CaptureCapacity)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ShortDescription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ShortDescription)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Proponents)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Proponents)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Industry_Feedstock)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Industry_Feedstock)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FacilityCaptureTypeID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FacilityCaptureTypeID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CaptureSource)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CaptureSource)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CaptureMethod)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CaptureMethod)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NewBuildOrRetrofit)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NewBuildOrRetrofit)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StorageType)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StorageType)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StorageFormationAndDepth)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StorageFormationAndDepth)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UtilisationType)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UtilisationType)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TransportationType)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TransportationType)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TransportationDistance)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TransportationDistance)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FacilityDescription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FacilityDescription)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.KeyMilestone)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.KeyMilestone)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CurrencyDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CurrencyDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ReferenceLink)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ReferenceLink)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ExcludeFromMap_HideInformation)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ExcludeFromMap_HideInformation)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CaptureLatitude)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CaptureLatitude)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CaptureLongitude)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CaptureLongitude)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StorageLatitude)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StorageLatitude)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StorageLongitude)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StorageLongitude)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Summary)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Summary)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdateDateTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UpdateDateTime)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.FacilityDataID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

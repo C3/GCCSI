@@ -1,0 +1,85 @@
+﻿@model GCCSI_CO2RE.Models.COREUpdates
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+
+    <div>
+        <fieldset>
+
+            @if (ViewBag.IsUpdate == true)
+
+                {
+
+                @Html.HiddenFor(model => model.UpdateID)
+
+            }
+
+            <table id="editableGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0" style="table-layout:fixed; font-size:12px; margin-top:1.5rem">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Area.AreaName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IncludeOnHome)
+                        </th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.Area.AreaName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.IncludeOnHome)
+                    </td>
+                </tr>
+            </table>
+
+
+            <div>
+                <div class="editor-label">
+
+                    @Html.LabelFor(model => model.Description)
+
+                </div>
+
+                <div class="editor-field" style="font-size:12px">
+
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.Description)
+
+                </div>
+            </div>
+
+
+            <p style="margin-top:1.5rem">
+
+                <input type="button" value="Close" id="btncancelView" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" />
+
+            </p>
+
+        </fieldset>
+    </div>
+
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('textarea').each(function () {
+                    this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;');
+                    this.setAttribute('readonly', true);
+                });
+            });
+    </script>
+
+}

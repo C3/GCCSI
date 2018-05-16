@@ -1,0 +1,98 @@
+﻿@model GCCSI_CO2RE.Models.StorageEstimatesData
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>StorageEstimatesData</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Country.CountryName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Country.CountryName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Region.RegionName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Region.RegionName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Year.YearName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Year.YearName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NationalResourceEstimates)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NationalResourceEstimates)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ConfidenceInEstimates)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ConfidenceInEstimates)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ProspectiveBasins)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ProspectiveBasins)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Summary)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Summary)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdateDateTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UpdateDateTime)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.StorageEstimatesDataID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

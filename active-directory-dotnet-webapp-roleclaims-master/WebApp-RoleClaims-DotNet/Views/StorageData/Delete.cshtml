@@ -1,0 +1,144 @@
+﻿@model GCCSI_CO2RE.Models.StorageData
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>StorageData</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RegionID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RegionID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CountryID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CountryID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ConventionalStoragePotential)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ConventionalStoragePotential)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RegionalPotential)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RegionalPotential)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RegionalAssessment)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RegionalAssessment)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Dataset)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Dataset)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AssessmentMaturity)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AssessmentMaturity)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Injection)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Injection)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CommercialScaleInjection)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CommercialScaleInjection)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.KnowledgeDissemination)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.KnowledgeDissemination)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Summary)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Summary)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.YearID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.YearID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdateDateTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UpdateDateTime)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

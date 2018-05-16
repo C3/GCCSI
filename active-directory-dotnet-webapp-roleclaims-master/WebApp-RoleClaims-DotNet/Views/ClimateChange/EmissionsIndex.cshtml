@@ -1,0 +1,157 @@
+﻿@model IEnumerable<GCCSI_CO2RE.Models.EmissionsData>
+
+@{
+    ViewBag.Title = "Emissions Data";
+}
+
+
+<div id="yearAndCreateEmissions" style="display:flex;align-items: flex-end; flex-direction:column;">
+    <div style="display:flex; flex-flow:row; align-items:center ">
+        <div id="createRowDiv" class="my-2 d-flex justify-content-end" style="padding-right:10px">
+            @Html.ActionLink("Create New", "AddEditEmissionsRecord", null, new { @class = "createDialogButton btn btn-primary pi-draggable" })
+        </div>
+        <div>
+            <div class="d-flex justify-content-end align-items-center">
+                <div style="font-size:20pt;">
+                    <b>
+                        Year:&nbsp;
+                    </b>
+                </div>
+                <select id="yearFilterEmissions" class="dropdownoption">
+                    <option value="All">All</option>
+                    @foreach (var year in ViewBag.PossibleYears)
+                    {
+                        <option value="@year.YearName">@year.YearName</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="datatable-wide" style="padding-left: 0; padding-right: 0">
+    <br />
+    <div style="width:100%">
+        <table id="emissionsTable" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0">
+            <thead style="font-size:12px">
+                <tr>
+                    <th rowspan="2">
+                        Region
+                    </th>
+                    <th rowspan="2">
+                        Country
+                    </th>
+                    <th colspan="5">
+                        Sector
+                    </th>
+                    <th rowspan="2">
+                        Summary
+                    </th>
+                    <th rowspan="2">
+                        Notes
+                    </th>
+                    <th rowspan="2">Actions</th>
+                </tr>
+                <tr>
+                    <th style="display:none">
+                        @Html.DisplayNameFor(model => model.Year.YearName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NonCombustion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OtherIndustrialCombustion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PowerIndustry)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Total)
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Region.RegionName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country.CountryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Year.YearName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OtherIndustrialCombustion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NonCombustion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PowerIndustry)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Summary)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "AddEditEmissionsRecord", new { id = item.EmissionsDataID }, new { @class = "editDialog" }) |
+                        @Html.ActionLink("Details", "EmissionsRecordDetails", new { id = item.EmissionsDataID }, new { @class = "detailsDialog" }) |
+                        @Html.ActionLink("Delete", "EmissionsDelete", new { id = item.EmissionsDataID }, new { @class = "deleteDialog" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+
+
+
+
+@Scripts.Render("~/Scripts/dataEntryShared.js")
+
+<script>
+
+    $('#emissionsTable').DataTable({
+        responsive: true,
+        searching: true,
+        autoWidth: false
+    });
+
+
+    $(document).ready(function () {
+        //Assurance to hide column.
+        var table = $('#emissionsTable').DataTable();
+        var column = table.column(2);
+        column.visible(false);
+
+        //Add on change function.
+        $("#yearFilterEmissions").change(function () {
+            //On the user change of year filter we want to update the table.
+            var yearWanted = document.getElementById("yearFilterEmissions").value;
+            var table = $('#emissionsTable').dataTable();
+            if (yearWanted == "All") {
+                table.fnFilter("", 2, false)
+            }
+            else {
+                table.fnFilter(yearWanted, 2);
+            }
+        });
+
+        //Once the page has loaded -- try to select current year from year selection.
+        $("#yearFilterEmissions").val("All");
+
+        var $x = $('#emissionsTable_filter');
+        $x.replaceWith($("#yearAndCreateEmissions"));
+    });
+</script>
+

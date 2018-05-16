@@ -1,0 +1,46 @@
+﻿@model IEnumerable<GCCSI_CO2RE.Models.RD_FacilityCaptureType>
+@{
+    Layout = null;
+}
+<div style="text-align:right">
+    @Html.ActionLink("Create New", "AddEditCaptureType", null, new { @id = "createDialog", @class = "btn btn-primary pi-draggable" })
+</div>
+
+<div class="datatable-wide" style="padding-left: 0; padding-right: 0">
+    <br />
+    <div style="width:100%">
+        <table id="capTypeGrid" class="table table-striped table-bordered dt-responsive wrap" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FacilityCaptureTypeName)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FacilityCaptureTypeName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "AddEditCaptureType", new { id = item.FacilityCaptureTypeID }, new { @class = "editDialog" }) |
+                        @Html.ActionLink("Details", "CaptureTypeDetails", new { id = item.FacilityCaptureTypeID }, new { @class = "detailsDialog" }) |
+                        @Html.ActionLink("Delete", "DeleteCaptureType", new { id = item.FacilityCaptureTypeID }, new { @class = "confirmDialog" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<script>
+    $('#capTypeGrid').DataTable({
+        responsive: true,
+        searching: false,
+        autoWidth: true
+    });
+</script>
